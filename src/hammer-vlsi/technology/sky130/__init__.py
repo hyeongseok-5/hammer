@@ -103,13 +103,13 @@ class SKY130Tech(HammerTechnology):
     def setup_techlef(self) -> None:
         setting_dir = self.get_setting("technology.sky130.sky130A")
         setting_dir = Path(setting_dir)
-        source_path = setting_dir / 'libs.ref' / self.library_name / 'techlef' / f'{self.library_name}__nom.tlef'
+        source_path = setting_dir / 'libs.ref' / self.library_name / 'techlef' / f'{self.library_name}.tlef'
         if not source_path.exists():
             raise FileNotFoundError(f"Tech-LEF not found: {source_path}")
 
         cache_tech_dir_path = Path(self.cache_dir)
         os.makedirs(cache_tech_dir_path, exist_ok=True)
-        dest_path = cache_tech_dir_path / f'{self.library_name}__nom.tlef'
+        dest_path = cache_tech_dir_path / f'{self.library_name}.tlef'
 
         with open(source_path, 'r') as sf:
             with open(dest_path, 'w') as df:
